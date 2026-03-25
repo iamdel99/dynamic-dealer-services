@@ -127,6 +127,43 @@
       transform: scale(0.95);
     }
 
+    /* FADE-IN ANIMATION */
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #081624;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.close {
+  margin-top: 20px;
+  cursor: pointer;
+  color: #d4af37;
+}
+
   </style>
 </head>
 
@@ -161,37 +198,68 @@
 <!-- FEATURES -->
 <div class="grid">
 
-  <div class="card">
+  <div class="card fade">
     <h3>Deal Tracking</h3>
     <p>Monitor every deal from start to finish with real-time updates.</p>
   </div>
 
-  <div class="card">
+  <div class="card fade">
     <h3>Agent Performance</h3>
     <p>See top performers and identify coaching opportunities instantly.</p>
   </div>
 
-  <div class="card">
+  <div class="card fade">
     <h3>Pipeline Visibility</h3>
     <p>Know exactly where every deal stands at any moment.</p>
   </div>
 
-  <div class="card">
+  <div class="card fade">
     <h3>Commission Tracking</h3>
     <p>Automatically calculate commissions and payouts.</p>
   </div>
 
-  <div class="card">
+  <div class="card fade">
     <h3>Mobile Access</h3>
     <p>Access your CRM anywhere, anytime.</p>
   </div>
 
-  <div class="card">
+  <div class="card fade">
     <h3>Reporting</h3>
     <p>Generate detailed reports to improve dealership performance.</p>
   </div>
 
 </div>
 
+  <div class="modal" id="modal">
+  <div class="modal-content">
+    <h2 id="modal-title"></h2>
+    <p id="modal-text"></p>
+    <div class="close" onclick="closeModal()">Close</div>
+  </div>
+</div>
+
+  <script>
+function openModal(title, text) {
+  document.getElementById('modal').style.display = 'flex';
+  document.getElementById('modal-title').innerText = title;
+  document.getElementById('modal-text').innerText = text;
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+/* SCROLL ANIMATION */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+</script>
+  
 </body>
 </html>
