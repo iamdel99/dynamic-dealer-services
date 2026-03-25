@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard - Dynamic Dealer Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #081624;
+      color: white;
+    }
+
+    /* SCROLL BAR */
+    #progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: #d4af37;
+      width: 0%;
+      z-index: 2000;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      width: 220px;
+      height: 100vh;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      color: #d4af37;
+    }
+
+    .sidebar a {
+      display: block;
+      margin: 15px 0;
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    /* MAIN */
+    .main {
+      margin-left: 240px;
+      padding: 40px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #d4af37;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    h1 {
+      font-size: 40px;
+    }
+
+    .gold {
+      color: #d4af37;
+    }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      gap: 30px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .stat h2 {
+      font-size: 32px;
+      color: #d4af37;
+    }
+
+    /* CARDS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    /* LIGHT MODE */
+    .light {
+      background: #f5f5f5;
+      color: black;
+    }
+
+    .light .sidebar {
+      background: rgba(0,0,0,0.05);
+    }
+
+    .light .card {
+      background: rgba(0,0,0,0.05);
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div id="progress"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>DDS</h2>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="crm.html">Agent CRM</a>
+  <a href="why.html">Why Us</a>
+  <a href="#">Training</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <button onclick="toggleTheme()">🌗 Toggle</button>
+  </div>
+
+  <!-- TITLE -->
+  <h1>Live <span class="gold">Performance Dashboard</span></h1>
+
+  <!-- COUNTERS -->
+  <div class="stats">
+    <div class="stat">
+      <h2 class="count" data-target="1200">0</h2>
+      <p>Dealers</p>
+    </div>
+
+    <div class="stat">
+      <h2 class="count" data-target="34">0</h2>
+      <p>% Growth</p>
+    </div>
+
+    <div class="stat">
+      <h2 class="count" data-target="850">0</h2>
+      <p>K Claims</p>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="grid">
+
+    <div class="card">
+      <h3>Revenue Trend</h3>
+      <canvas id="lineChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Deal Distribution</h3>
+      <canvas id="barChart"></canvas>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+
+/* THEME TOGGLE */
+function toggleTheme() {
+  document.body.classList.toggle('light');
+}
+
+/* COUNTERS */
+const counters = document.querySelectorAll('.count');
+
+counters.forEach(counter => {
+  const update = () => {
+    const target = +counter.getAttribute('data-target');
+    const count = +counter.innerText;
+    const speed = target / 40;
+
+    if (count < target) {
+      counter.innerText = Math.ceil(count + speed);
+      setTimeout(update, 30);
+    } else {
+      counter.innerText = target + '+';
+    }
+  };
+  update();
+});
+
+/* LINE CHART */
+const lineChart = new Chart(document.getElementById('lineChart'), {
+  type: 'line',
+  data: {
+    labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    datasets: [{
+      label: 'Revenue',
+      data: [120,190,300,250,420,380,500],
+      borderColor: '#d4af37',
+      tension: 0.4
+    }]
+  }
+});
+
+/* BAR CHART */
+const barChart = new Chart(document.getElementById('barChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Service','Warranty','Insurance'],
+    datasets: [{
+      label: 'Deals',
+      data: [300,500,200],
+      backgroundColor: '#d4af37'
+    }]
+  }
+});
+
+/* LIVE DATA */
+setInterval(() => {
+  lineChart.data.datasets[0].data.push(Math.floor(Math.random()*500));
+  lineChart.data.datasets[0].data.shift();
+  lineChart.update();
+
+  barChart.data.datasets[0].data = barChart.data.datasets[0].data.map(v => v + Math.floor(Math.random()*20 - 10));
+  barChart.update();
+}, 2000);
+
+/* SCROLL BAR */
+window.onscroll = () => {
+  let winScroll = document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById("progress").style.width = (winScroll / height) * 100 + "%";
+};
+
+</script>
+
+</body>
+</html>
