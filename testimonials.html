@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testimonials - Dynamic Dealer Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #081624;
+      color: white;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 40px;
+      background: rgba(8,22,36,0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      opacity: 0.8;
+    }
+
+    .logo {
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+    }
+
+    .logo:hover {
+      color: #d4af37;
+    }
+
+    .cta {
+      background: #d4af37;
+      color: black;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    /* HERO */
+    .hero {
+      padding-top: 140px;
+      text-align: center;
+      padding-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 46px;
+    }
+
+    .gold {
+      color: #d4af37;
+    }
+
+    .sub {
+      max-width: 700px;
+      margin: 20px auto;
+      opacity: 0.75;
+    }
+
+    /* FEATURED */
+    .featured {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stars {
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+
+    .quote {
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 20px 0;
+    }
+
+    .author {
+      opacity: 0.7;
+      font-size: 14px;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border: 1px solid #d4af37;
+    }
+
+    /* FADE */
+    .fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.8s;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .cta-btn {
+      background: #d4af37;
+      color: black;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <a href="index.html" class="logo">Dynamic Dealer Services</a>
+
+  <div>
+    <a href="why.html">Why Us</a>
+    <a href="crm.html">Agent CRM</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="training.html">Training</a>
+    <a href="claims.html">Claims</a>
+    <a href="testimonials.html">Testimonials</a>
+    <a href="contact.html" class="cta">Book a Strategy Call</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>What Our <span class="gold">Partners Say</span></h1>
+
+  <div class="sub">
+    Trusted by dealerships nationwide to improve performance,
+    increase revenue, and streamline operations.
+  </div>
+</div>
+
+<!-- FEATURED TESTIMONIAL -->
+<div class="featured fade">
+  <div class="stars">★★★★★</div>
+
+  <div class="quote">
+    “Dynamic Dealer Services completely transformed our F&I process.
+    Our revenue increased significantly within months, and our team
+    is more confident than ever.”
+  </div>
+
+  <div class="author">
+    — General Manager, Midwest Auto Group
+  </div>
+</div>
+
+<!-- TESTIMONIAL GRID -->
+<div class="grid">
+
+  <div class="card fade">
+    <div class="stars">★★★★★</div>
+    <p>“The CRM alone is worth it. We now track every deal seamlessly.”</p>
+    <small>— Sales Director</small>
+  </div>
+
+  <div class="card fade">
+    <div class="stars">★★★★★</div>
+    <p>“Training improved our closing rates almost immediately.”</p>
+    <small>— F&I Manager</small>
+  </div>
+
+  <div class="card fade">
+    <div class="stars">★★★★★</div>
+    <p>“Claims process is smooth, fast, and reliable.”</p>
+    <small>— Dealer Owner</small>
+  </div>
+
+  <div class="card fade">
+    <div class="stars">★★★★★</div>
+    <p>“Our agents finally have clarity and structure.”</p>
+    <small>— Operations Manager</small>
+  </div>
+
+  <div class="card fade">
+    <div class="stars">★★★★★</div>
+    <p>“We saw a noticeable increase in product penetration.”</p>
+    <small>— Finance Director</small>
+  </div>
+
+  <div class="card fade">
+    <div class="stars">★★★★★</div>
+    <p>“Support team is responsive and truly helpful.”</p>
+    <small>— Dealer Group</small>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to see these results?</h2>
+  <br>
+  <a href="contact.html" class="cta-btn">Book a Strategy Call</a>
+</div>
+
+<script>
+
+/* FADE ANIMATION */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+
+</script>
+
+</body>
+</html>
