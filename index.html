@@ -12,7 +12,7 @@
       color: white;
     }
 
-    /* NAVBAR */
+    /* NAV */
     .nav {
       position: fixed;
       top: 0;
@@ -20,13 +20,24 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 40px;
-      background: rgba(8,22,36,0.9);
+      padding: 15px 20px;
+      background: rgba(8,22,36,0.95);
       backdrop-filter: blur(8px);
       z-index: 1000;
     }
 
-    .nav a {
+    .logo {
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
       color: white;
       text-decoration: none;
       margin: 0 10px;
@@ -42,16 +53,23 @@
       font-weight: bold;
     }
 
+    /* HAMBURGER */
+    .menu-toggle {
+      display: none;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
     /* HERO */
     .hero {
-  padding-top: 120px;
-  padding-bottom: 120px;
-  text-align: center;
+      padding-top: 120px;
+      padding-bottom: 120px;
+      text-align: center;
 
-  background:
-    linear-gradient(rgba(8,22,36,0.85), rgba(8,22,36,0.95)),
-    url('hero.jpg') center/cover no-repeat;
-}
+      background:
+        linear-gradient(rgba(8,22,36,0.85), rgba(8,22,36,0.95)),
+        url('hero.jpg') center/cover no-repeat;
+    }
 
     h1 {
       font-size: 48px;
@@ -85,11 +103,6 @@
       text-align: center;
     }
 
-    .section h2 {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-
     .cards {
       display: flex;
       justify-content: center;
@@ -112,6 +125,35 @@
       opacity: 0.6;
       font-size: 13px;
     }
+
+    /* MOBILE MENU */
+    @media (max-width: 768px) {
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #081624;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        padding: 20px 0;
+      }
+
+      .nav-links a {
+        margin: 10px 0;
+        font-size: 16px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
   </style>
 </head>
 
@@ -120,7 +162,12 @@
 <!-- NAV -->
 <div class="nav">
   <a href="index.html" class="logo">Dynamic Dealer Services</a>
-  <div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">
+    ☰
+  </div>
+
+  <div class="nav-links" id="navLinks">
     <a href="why.html">Why Us</a>
     <a href="crm.html">Agent CRM</a>
     <a href="dashboard.html">Dashboard</a>
@@ -142,7 +189,7 @@
     streamline operations, and close more deals.
   </div>
 
-  <a href="#" class="btn">Book a Strategy Call</a>
+  <a href="contact.html" class="btn">Book a Strategy Call</a>
 </div>
 
 <!-- FEATURES -->
@@ -193,6 +240,13 @@
 <footer>
   © 2026 Dynamic Dealer Services
 </footer>
+
+<!-- SCRIPT -->
+<script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+</script>
 
 </body>
 </html>
