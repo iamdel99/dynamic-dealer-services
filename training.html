@@ -22,6 +22,7 @@
       padding: 15px 40px;
       background: rgba(8,22,36,0.9);
       backdrop-filter: blur(10px);
+      z-index: 1000;
     }
 
     .nav a {
@@ -29,6 +30,11 @@
       text-decoration: none;
       margin: 0 10px;
       opacity: 0.8;
+      transition: 0.2s;
+    }
+
+    .nav a:hover {
+      color: #d4af37;
     }
 
     .cta {
@@ -43,11 +49,11 @@
     .hero {
       padding-top: 140px;
       text-align: center;
-      padding-bottom: 60px;
+      padding-bottom: 80px;
     }
 
     h1 {
-      font-size: 42px;
+      font-size: 48px;
     }
 
     .gold {
@@ -57,31 +63,50 @@
     .sub {
       max-width: 700px;
       margin: 20px auto;
-      opacity: 0.8;
+      opacity: 0.75;
+      line-height: 1.6;
     }
 
     /* GRID */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      gap: 25px;
       max-width: 1100px;
       margin: auto;
-      padding: 40px 20px 100px;
+      padding: 40px 20px 120px;
     }
 
+    /* PREMIUM CARD */
     .card {
       background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
       padding: 25px;
+      transition: all 0.3s ease;
       cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Glow effect */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(212,175,55,0.2), transparent 60%);
+      opacity: 0;
       transition: 0.3s;
     }
 
+    .card:hover::before {
+      opacity: 1;
+    }
+
     .card:hover {
-      transform: translateY(-8px);
-      border: 1px solid #d4af37;
+      transform: translateY(-10px) scale(1.02);
+      border-color: #d4af37;
     }
 
     .card:active {
@@ -95,6 +120,19 @@
     .card p {
       opacity: 0.7;
       font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* FADE ANIMATION */
+    .fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.8s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* MODAL */
@@ -110,10 +148,16 @@
     .modal-content {
       background: #081624;
       padding: 30px;
-      border-radius: 12px;
+      border-radius: 16px;
       max-width: 500px;
       text-align: center;
       border: 1px solid rgba(255,255,255,0.1);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     .close {
@@ -146,42 +190,42 @@
   <h1>Dealer & Agent <span class="gold">Training</span></h1>
 
   <div class="sub">
-    Structured training programs designed to improve F&I performance,
-    close more deals, and maximize profitability.
+    Structured programs designed to improve performance, increase
+    product penetration, and help your team close more deals.
   </div>
 </div>
 
-<!-- TRAINING MODULES -->
+<!-- GRID -->
 <div class="grid">
 
-  <div class="card" onclick="openModal('F&I Fundamentals','Learn the core principles of F&I success.')">
+  <div class="card fade" onclick="openModal('F&I Fundamentals','Learn core dealership finance strategies.')">
     <h3>F&I Fundamentals</h3>
-    <p>Master the basics of dealership finance and insurance.</p>
+    <p>Master the foundation of dealership success.</p>
   </div>
 
-  <div class="card" onclick="openModal('Sales Psychology','Understand how customers think and make decisions.')">
+  <div class="card fade" onclick="openModal('Sales Psychology','Understand buyer behavior and decision-making.')">
     <h3>Sales Psychology</h3>
-    <p>Improve closing rates using proven techniques.</p>
+    <p>Improve closing with proven techniques.</p>
   </div>
 
-  <div class="card" onclick="openModal('Product Training','Deep dive into warranties, GAP, and protection plans.')">
+  <div class="card fade" onclick="openModal('Product Training','Learn how to present F&I products effectively.')">
     <h3>Product Training</h3>
-    <p>Confidently present and sell F&I products.</p>
+    <p>Confidently sell warranties and protection plans.</p>
   </div>
 
-  <div class="card" onclick="openModal('Compliance','Stay compliant with industry regulations.')">
+  <div class="card fade" onclick="openModal('Compliance','Stay compliant with regulations.')">
     <h3>Compliance</h3>
-    <p>Avoid risk and protect your dealership.</p>
+    <p>Protect your dealership and avoid risk.</p>
   </div>
 
-  <div class="card" onclick="openModal('Advanced Strategies','High-level tactics for top-performing teams.')">
+  <div class="card fade" onclick="openModal('Advanced Strategies','High-level strategies for top performers.')">
     <h3>Advanced Strategies</h3>
-    <p>Take your dealership to the next level.</p>
+    <p>Scale performance and revenue.</p>
   </div>
 
-  <div class="card" onclick="openModal('Ongoing Coaching','Continuous improvement with expert support.')">
+  <div class="card fade" onclick="openModal('Ongoing Coaching','Continuous improvement and support.')">
     <h3>Ongoing Coaching</h3>
-    <p>Stay ahead with ongoing training sessions.</p>
+    <p>Keep your team improving consistently.</p>
   </div>
 
 </div>
@@ -197,6 +241,7 @@
 
 <script>
 
+/* MODAL */
 function openModal(title, text) {
   document.getElementById('modal').style.display = 'flex';
   document.getElementById('modal-title').innerText = title;
@@ -206,6 +251,17 @@ function openModal(title, text) {
 function closeModal() {
   document.getElementById('modal').style.display = 'none';
 }
+
+/* FADE-IN SCROLL */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+document.querySelectorAll('.fade').forEach(el => observer.observe(el));
 
 </script>
 
