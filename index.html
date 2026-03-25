@@ -129,39 +129,46 @@
     }
 
     /* MOBILE */
-    @media (max-width: 768px) {
+    /* MOBILE FIXED MENU */
+@media (max-width: 768px) {
 
-      body {
-        padding-top: 70px;
-      }
+  body {
+    padding-top: 70px;
+  }
 
-      .menu-toggle {
-        display: block;
-      }
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+  }
 
-      .nav-links {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: #081624;
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #081624;
 
-        flex-direction: column;
-        align-items: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
 
-        display: none;
-        padding: 20px 0;
-      }
+    padding: 20px 0;
+    z-index: 999;
+  }
 
-      .nav-links a {
-        margin: 12px 0;
-        font-size: 16px;
-      }
+  .nav-links a {
+    margin: 12px 0;
+    font-size: 16px;
+  }
 
-      .nav-links.active {
-        display: flex;
-      }
-    }
+  .nav-links.show {
+    display: flex;
+  }
+}
   </style>
 </head>
 
@@ -171,9 +178,7 @@
 <div class="nav">
   <a href="index.html" class="logo">Dynamic Dealer Services</a>
 
-  <div class="menu-toggle" onclick="toggleMenu()">
-    ☰
-  </div>
+  <button class="menu-toggle" id="menuBtn">☰</button>
 
   <div class="nav-links" id="navLinks">
     <a href="why.html">Why Us</a>
@@ -251,14 +256,17 @@
 
 <!-- SCRIPT -->
 <script>
-function toggleMenu() {
-  document.getElementById("navLinks").classList.toggle("active");
-}
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
 
-// 🔥 FIX: close menu after clicking
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("show");
+});
+
+// 🔥 close menu after click (IMPORTANT)
 document.querySelectorAll("#navLinks a").forEach(link => {
   link.addEventListener("click", () => {
-    document.getElementById("navLinks").classList.remove("active");
+    navLinks.classList.remove("show");
   });
 });
 </script>
