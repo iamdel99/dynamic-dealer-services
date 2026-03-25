@@ -7,35 +7,182 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       background: #081624;
       color: white;
-      padding: 40px;
+    }
+
+    /* NAVBAR */
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: rgba(8,22,36,0.9);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .cta {
+      background: #d4af37;
+      color: black;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    /* HERO */
+    .hero {
+      padding-top: 140px;
+      text-align: center;
+      padding-bottom: 60px;
+    }
+
+    .tag {
+      color: #d4af37;
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
     }
 
     h1 {
+      font-size: 48px;
+      margin: 10px 0;
+    }
+
+    .sub {
+      max-width: 700px;
+      margin: 20px auto;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+
+    /* CARDS */
+    .section {
+      padding: 60px 20px 100px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 25px;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      border-color: #d4af37;
+      transform: translateY(-5px);
+    }
+
+    .icon {
+      font-size: 22px;
+      margin-bottom: 10px;
       color: #d4af37;
     }
 
-    a {
-      color: #d4af37;
-      text-decoration: none;
+    .card h3 {
+      margin: 10px 0;
     }
+
+    .card p {
+      font-size: 14px;
+      opacity: 0.7;
+      line-height: 1.5;
+    }
+
   </style>
 </head>
 
 <body>
 
-<h1>Why Choose Us</h1>
+<!-- NAV -->
+<div class="nav">
+  <div><strong>Dynamic Dealer Services</strong></div>
+  <div>
+    <a href="why.html">Why Us</a>
+    <a href="#">Agent CRM</a>
+    <a href="#">Dashboard</a>
+    <a href="#">Training</a>
+    <a href="#">Claims</a>
+    <a href="#">Testimonials</a>
+    <a href="contact.html" class="cta">Book a Strategy Call</a>
+  </div>
+</div>
 
-<p>
-Dynamic Dealer Services helps dealerships increase performance,
-track deals, and maximize revenue using modern F&I tools.
-</p>
+<!-- HERO -->
+<div class="hero">
+  <div class="tag">WHY DYNAMIC DEALER SERVICES</div>
 
-<br>
+  <h1>Built for the Modern F&I Office</h1>
 
-<a href="index.html">← Back to Home</a>
+  <div class="sub">
+    We combine deep industry expertise with cutting-edge technology
+    to help dealerships and agents perform at their peak.
+  </div>
+</div>
+
+<!-- FEATURES GRID -->
+<div class="section">
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon">⚙️</div>
+      <h3>AI-Powered Insights</h3>
+      <p>Machine learning models analyze dealer performance to uncover hidden revenue opportunities.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🛡️</div>
+      <h3>Bank-Grade Security</h3>
+      <p>256-bit encryption, SOC 2 compliance, and full data protection for your dealership.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">📊</div>
+      <h3>Real-Time Analytics</h3>
+      <p>Live dashboards track deals, agents, and performance instantly.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎧</div>
+      <h3>Dedicated F&I Support</h3>
+      <p>Experienced F&I professionals available to help your team close more deals.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🔗</div>
+      <h3>Seamless DMS Integration</h3>
+      <p>Works with CDK, Reynolds, DealerSocket, and other major systems.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🚀</div>
+      <h3>Rapid Onboarding</h3>
+      <p>Most dealerships go live within 48 hours with full support.</p>
+    </div>
+
+  </div>
+</div>
 
 </body>
 </html>
